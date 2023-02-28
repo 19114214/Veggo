@@ -27,13 +27,41 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 							<div class="login-option">
-								<a class="cs-color cs-popup-joinus-btn login-popup" data-target="#sign-in" data-toggle="modal" href="#user-register">Login / 
-									<span><a href="{% url 'registerUser' %}" class="cs-color cs-popup-joinus-btn login-popup ml-0">Register</a><a class="get-start-btn" href="register-restaurant.html">
-									Be a Vendor </a>
+							  <a class="cs-color cs-popup-joinus-btn login-popup" data-target="#sign-in" data-toggle="modal" href="#user-register">Login /</a>
+							  <a href="{% url 'registerUser' %}" class="cs-color cs-popup-joinus-btn login-popup ml-0">Register</a>
+							  <div class="dropdown d-inline-block ml-0">
+								<a class="btn btn-secondary dropdown-toggle get-start-btn" href="#" role="button" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  Be a Vendor or Farmer
+								</a>
+								<div class="dropdown-menu" aria-labelledby="registerDropdown">
+								  <a class="dropdown-item" href="{% url 'registerVendor' %}">Be a Vendor</a>
+								  <a class="dropdown-item" href="#">Be a Farmer</a>
+								</div>
+							  </div>
 							</div>
-						</div>
-					</div>
+						  </div>
+						  
 				</div>
 			</div>
 		</header>
 		<!-- Header End -->
+		<script>
+			// Get the dropdown button
+			var dropdownButton = document.querySelector('.dropdown-toggle');
+		  
+			// Get the dropdown menu
+			var registerDropdown = document.querySelector('.dropdown-menu');
+		  
+			// Add a click event listener to the dropdown button
+			dropdownButton.addEventListener('click', function() {
+			  // Toggle the "show" class on the dropdown menu
+			  registerDropdown.classList.toggle('show');
+			});
+		  
+			// Hide the dropdown menu when the user clicks outside of it
+			window.addEventListener('click', function(event) {
+			  if (!event.target.matches('.dropdown-toggle') && !event.target.matches('.dropdown-menu *')) {
+				registerDropdown.classList.remove('show');
+			  }
+			});
+		  </script>
