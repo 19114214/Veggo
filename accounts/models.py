@@ -78,6 +78,12 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
     
+    def get_role(self):
+        if self.role == 1:
+            user_role = 'Vendor'
+        elif self.role == 2:
+             user_role = 'Consumer'
+        return user_role
 
 class UserProfile(models.Model):
     user = OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
@@ -94,6 +100,6 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.user.email
     

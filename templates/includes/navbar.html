@@ -27,15 +27,20 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 							<div class="login-option">
-							  <a class="cs-color cs-popup-joinus-btn login-popup" data-target="#sign-in" data-toggle="modal" href="#user-register">Login /</a>
-							  <a href="{% url 'registerUser' %}" class="cs-color cs-popup-joinus-btn login-popup ml-0">Register</a>
-							  <div class="dropdown d-inline-block ml-0">
+								{% if user.is_authenticated %}
+								<a class="cs-color cs-popup-joinus-btn login-popup" href="{% url 'myAccount' %}">My Account </a>
+								<a class="cs-color cs-popup-joinus-btn login-popup text-center" href="{% url 'logout' %}">Logout </a>
+								{% else %}
+							 	<a class="cs-color cs-popup-joinus-btn login-popup" href="{% url 'login' %}">Login /</a>
+							  	<a href="{% url 'registerUser' %}" class="cs-color cs-popup-joinus-btn login-popup ml-0">Register</a>
+							  	<div class="dropdown d-inline-block ml-0">
 								<a class="btn btn-secondary dropdown-toggle get-start-btn" href="#" role="button" id="dropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								  Be a Vendor or Farmer
 								</a>
 								<div class="dropdown-menu" aria-labelledby="registerDropdown">
 								  <a class="dropdown-item" href="{% url 'registerVendor' %}">Be a Vendor</a>
 								  <a class="dropdown-item" href="#">Be a Farmer</a>
+								 {% endif %}
 								</div>
 							  </div>
 							</div>
